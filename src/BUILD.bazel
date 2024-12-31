@@ -1,0 +1,51 @@
+cc_library(
+    name = "lib-ddrive",
+    srcs = [
+        "DiscordDrive.cpp",
+    ],
+    hdrs = [
+        "DiscordDrive.hpp",
+    ],
+    linkopts = [
+        "-lcurl",
+        "-ldpp",
+    ],
+    visibility = ["//visibility:public"],
+    copts = [
+        "-std=c++23",
+        "-ldpp",
+    ],
+)
+
+cc_binary(
+    name = "drive",
+    srcs = [
+        "drive.cpp",
+    ],
+    linkopts = [
+    ],
+    copts = [
+        "-std=c++23",
+    ],
+    deps = [
+        ":lib-ddrive",
+    ],
+    linkshared = True,
+)
+
+cc_binary(
+    name = "test",
+    srcs = [
+        "test.cpp",
+    ],
+    linkopts = [
+        "-lasan",
+    ],
+    copts = [
+        "-std=c++23",
+        "-fsanitize=address",
+    ],
+    deps = [
+        ":lib-ddrive",
+    ],
+)

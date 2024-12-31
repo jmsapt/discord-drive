@@ -1,0 +1,8 @@
+bazel-bin
+bazel-discord-drive
+bazel-out
+bazel-testlogs
+.cache
+
+mnt
+SECRET
